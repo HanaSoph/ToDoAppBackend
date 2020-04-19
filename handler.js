@@ -63,7 +63,7 @@ app.delete('/tasks/:id', function(request, response) {
 });
 
 app.post('/tasks', function(request, response) {
-  response.status(201).send('Task Created!')
+  response.status(201).send('Task '+ request.body.text + ' Created!')
   // should insert a new task in the database
 });
 
