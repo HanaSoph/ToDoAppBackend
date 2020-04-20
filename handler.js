@@ -8,6 +8,7 @@ const cors = require('cors');
 
 const app = express();
 app.use(cors());
+app.use(express.json());
 
 app.get('/tasks', function(request, response) {
 
@@ -54,21 +55,34 @@ app.delete('/tasks/:id', function(request, response) {
 
   response.json(someResponse);
 
-  // response.status(200).send('Task ' + taskIdToBeDeleted + ' Deleted!'); {
-  //   if (taskIdToBeDeleted < 3) {
-  //     response.status(404).send('Task ' + taskIdToBeDeleted + ' does not exist');
-  //   }};
-  //
   // should delete the task with the specified ID from the database
 });
 
 app.post('/tasks', function(request, response) {
-  response.status(201).send('Task '+ request.body.text + ' Created!')
+
+  response.status(201).json({
+    message: 'Task '+ request.body.text + ' Created!'
+  });
   // should insert a new task in the database
 });
 
 app.put('/tasks/:id', function(request, response) {
-  response.status(200).send('Task Updated!')
+  const taskIdToBeUpdated = request.params.id;
+
+  let someResponse = {
+    message: 'Task ' + taskIdToBeUpdated + ' has recieved a request to be updated'
+  };
+
+  if (taskIdToBeUpdated > 3) {
+    response.status(404);
+    someResponse = {
+      message: 'Task ' + taskIdToBeUpdated + ' does not exist'
+    };
+  }
+
+  response.json(someResponse);
+  
+  // response.status(200).send('Task Updated!')
   // should update a task into the database
 });
 
