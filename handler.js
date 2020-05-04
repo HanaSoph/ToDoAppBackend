@@ -63,7 +63,7 @@ app.post('/tasks', function(request, response) {
 app.put('/tasks/:id', function(request, response) {
   const inputData = request.body;
   const taskIdToBeUpdated = request.params.id;
-  connection.query(`UPDATE TaskList SET Description = '${inputData.Description}', Urgent = ${inputData.Urgent},  Completed = ${inputData.Completed}  WHERE TaskId = ${19}`, function(err) {
+  connection.query(`UPDATE TaskList SET Completed = ${inputData.Completed}  WHERE TaskId = ${taskIdToBeUpdated}`, function(err) {
     if (err) {
       console.log('Error from MySQL', err);
       response.status(500).send(err);
