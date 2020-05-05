@@ -15,9 +15,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.get('/tasks', function(request, response) {
-  // request had loads of info about the request
-  // response has some useful methos for sending a response
+app.get('/tasks', function(response) {
   connection.query('SELECT * FROM TaskList', function(err, data) {
     if (err) {
       console.log('Error from MYSQL', err);
@@ -27,6 +25,9 @@ app.get('/tasks', function(request, response) {
     }
   });
 });
+
+// request had loads of info about the request
+// response has some useful methos for sending a response
 
 app.delete('/tasks/:id', function(request, response) {
   const taskIdToBeDeleted = request.params.id;
@@ -71,24 +72,6 @@ app.put('/tasks/:id', function(request, response) {
       response.status(200).send(`Task ${taskIdToBeUpdated} Updated!`);
     }
   });
-
-  // const taskIdToBeUpdated = request.params.id;
-
-  // let someResponse = {
-  //   message: 'Task ' + taskIdToBeUpdated + ' has recieved a request to be updated'
-  // };
-
-  // if (taskIdToBeUpdated > 3) {
-  //   response.status(404);
-  //   someResponse = {
-  //     message: 'Task ' + taskIdToBeUpdated + ' does not exist'
-  //   };
-  // }
-
-  // response.json(someResponse);
-
-  // response.status(200).send('Task Updated!')
-  // should update a task into the database
 });
 
 module.exports.app = serverlessHttp(app);
