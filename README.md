@@ -1,5 +1,5 @@
 # The Big Day To Do List Database
-An API link with a to do list app for Brides and Grooms with a big list of things to do for their big day! It integrates with a frontend, available here:https://github.com/HanaSoph/ToDoAppReact
+An API link with a to do list app for Brides and Grooms with a big list of things to do for their big day! It integrates with a frontend, available here: https://github.com/HanaSoph/ToDoAppReact
 
 Click here to view the app: https://hanasoph.github.io/ToDoAppReact/
 
